@@ -15,8 +15,24 @@ export default ({ extract }, sniper) => {
   }
 
   // Get Contextual
-	foreach(extract, (set, key) => {
-		// Set Contextual into Sniper
+  foreach(extract, (set, key) => {
+    // Set Contextual into Sniper
+    if (key === "store") {
+      return (sniper[key] = contextual(
+        {
+          // Get Context
+          context: convert(key, set.suffix),
+          // Expect If
+          expect: pkg => pkg,
+          // Empowerment
+          inject: sniper.util
+        },
+        // Promise
+        false
+      ));
+    }
+
+		// Others
     sniper[key] = contextual(
       {
         // Get Context
@@ -26,10 +42,15 @@ export default ({ extract }, sniper) => {
         // Empowerment
         inject: ["store"].includes(key) ? sniper.util : null
       },
-			// Promise
+      // Promise
       false
     );
-	});
+
+		// Style
+    if (key === "style") {
+      sniper.style = sniper.style.variables;
+    }
+  });
 
   // Return
   return sniper;

@@ -32,6 +32,7 @@ export default ({ registry }, glober, inject) => {
       ));
     }
 
+		// Others
     Object.assign(
       // Origin
       glober,
