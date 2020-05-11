@@ -4,7 +4,7 @@ import { foreach } from "../kit";
 // Export
 export default (sniper, external) => {
   // Set Ruse
-  const ruse = ["api", "style"];
+  const ruse = ["util", "api", "style"];
 
   // Ruse
   foreach(ruse, key => {
@@ -14,9 +14,9 @@ export default (sniper, external) => {
     delete sniper[key];
   });
 
-	// External
-	Object.assign(sniper, external);
+  // External
+  Object.assign(sniper, external);
 
-	// Return
-	return sniper;
+  // Return
+  return sniper;
 };
