@@ -33,7 +33,7 @@ const sniper = {};
 const config = {};
 
 // External
-function subscript(mode, hand) {
+function subscribe(mode, hand) {
   // Treatment
   config[mode] = ["request", "response"].includes(mode) ? lint(mode) : {};
 
@@ -63,7 +63,7 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
         // Core
         Vue,
         // Model External
-        subscript
+        subscribe
       };
     },
 
