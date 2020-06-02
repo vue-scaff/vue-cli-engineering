@@ -6,6 +6,9 @@ function convert(mode, suffix) {
   if (mode === "component") {
     return require.context(`@component`, true, /.vue$/);
   }
+  if (mode === "filter") {
+    return require.context(`@filter`, true, /.js$/);
+  }
   if (mode === "route") {
     return require.context(`@route`, true, /\S+\/route.js$/);
   }
