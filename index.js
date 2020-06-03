@@ -15,7 +15,6 @@ import {
   vueRunner,
   vueRegister,
   vueComponent,
-  vueFilter,
   vueRouter,
   vueStore,
   vueLanguage
@@ -56,7 +55,7 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       // ★ Snipe Provider
       provider(process.env.rc || {}, sniper);
 
-      // ★ Registry Provider
+      // ★ Registry Provider -- No Store
       registry(process.env.rc || {}, glober, sniper.util);
 
       // Api Hook External
@@ -70,26 +69,39 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
 
     // Compile
     Compile(App) {
+      // Get Http
+      const { request, response } = config;
+
+      // Set Syringe
+      const syringe = {
+        $http: http(request, response),
+        $style: sniper.style
+      };
+
+      // ★ Registry Provider -- Just Store
+      registry(
+        { registry: { store: process.env.rc.registry.store } },
+        glober,
+        {
+          ...sniper.util,
+          ...syringe
+        },
+        true
+      );
+
       // Taunt
       taunt(glober);
 
       // Fusion Debris
       fusion(glober, sniper);
 
-      // Get Http
-      const { request, response } = config;
-
       // Waiting Prototype
-      const waitress = attendant(sniper, {
-        $http: http(request, response)
-      });
+      const waitress = attendant(sniper, syringe);
 
       // Util Register
       Vue.use(vueRegister, waitress);
       // Component Register
       Vue.use(vueComponent, sniper.component, { ...config.component });
-      // Filter Register
-      Vue.use(vueFilter, sniper.filter);
 
       // Vue Runner
       Vue.use(vueRunner, App, {

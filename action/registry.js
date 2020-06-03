@@ -8,7 +8,7 @@ import { alternate } from "../action";
 import { foreach } from "../kit";
 
 // Set Context into Registry
-export default ({ registry }, glober, inject) => {
+export default ({ registry }, glober, inject, late = false) => {
   // Require Registry
   if (!registry) {
     return glober;
@@ -18,21 +18,28 @@ export default ({ registry }, glober, inject) => {
   foreach(registry, (set, key) => {
     // Set Contextual into Sniper
     if (key === "store") {
-      return (glober[key] = contextual(
-        {
-          // Get Context
-          context: alternate(key),
-          // Expect If
-          expect: pkg => pkg,
-          // Empowerment
-          inject: inject
-        },
-        // Promise
-        false
-      ));
+      // Should Comply
+      if (late === true) {
+        // Inset to Glober
+        return (glober[key] = contextual(
+          {
+            // Get Context
+            context: alternate(key),
+            // Expect If
+            expect: pkg => pkg,
+            // Empowerment
+            inject: inject
+          },
+          // Promise
+          false
+        ));
+      }
+
+      // Or Next
+      return;
     }
 
-		// Others
+    // Others
     Object.assign(
       // Origin
       glober,
