@@ -8,7 +8,7 @@ import { convert } from "../action";
 import { foreach } from "../kit";
 
 // Set Context into Sniper
-export default ({ extract }, sniper, late = false) => {
+export default ({ extract }, sniper, inject, late = false) => {
   // Require Extract
   if (!extract) {
     return sniper;
@@ -28,7 +28,7 @@ export default ({ extract }, sniper, late = false) => {
             // Expect If
             expect: pkg => pkg,
             // Empowerment
-            inject: sniper
+            inject: inject
           },
           // Promise
           false

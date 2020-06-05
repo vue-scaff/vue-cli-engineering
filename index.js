@@ -85,7 +85,7 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       };
 
       // ★ Snipe Provider -- Just Store
-      provider(process.env.rc || {}, senior, true);
+      provider(process.env.rc || {}, sniper, senior, true);
 
       // ★ Registry Provider -- Just Store
       registry(
