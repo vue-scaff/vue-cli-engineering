@@ -2,7 +2,7 @@
 import { foreach } from "../kit";
 
 // Export
-export default (Vuex, modules, utils, global) => {
+export default (Vuex, modules, utils, getters, global) => {
   // Add Namespace
   foreach(modules, (module, key) => (module.namespaced = true));
 
@@ -13,6 +13,7 @@ export default (Vuex, modules, utils, global) => {
 
   // Return
   return new Vuex.Store({
-    modules
+    modules,
+		getters
   });
 };

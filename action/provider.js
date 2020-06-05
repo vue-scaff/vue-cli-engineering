@@ -8,7 +8,7 @@ import { convert } from "../action";
 import { foreach } from "../kit";
 
 // Set Context into Sniper
-export default ({ extract }, sniper) => {
+export default ({ extract }, sniper, late = false) => {
   // Require Extract
   if (!extract) {
     return sniper;
@@ -18,35 +18,40 @@ export default ({ extract }, sniper) => {
   foreach(extract, (set, key) => {
     // Set Contextual into Sniper
     if (key === "store") {
-      return (sniper[key] = contextual(
-        {
-          // Get Context
-          context: convert(key, set.suffix),
-          // Expect If
-          expect: pkg => pkg,
-          // Empowerment
-          inject: sniper.util
-        },
-        // Promise
-        false
-      ));
+      // Should Comply
+      if (late === true) {
+        // Inset to Sniper
+        return (sniper[key] = contextual(
+          {
+            // Get Context
+            context: convert(key, set.suffix),
+            // Expect If
+            expect: pkg => pkg,
+            // Empowerment
+            inject: sniper
+          },
+          // Promise
+          false
+        ));
+      }
+
+      // Or Next
+      return;
     }
 
-		// Others
+    // Others
     sniper[key] = contextual(
       {
         // Get Context
         context: convert(key, set.suffix),
         // Expect If
-        expect: pkg => pkg,
-        // Empowerment
-        inject: ["store"].includes(key) ? sniper.util : null
+        expect: pkg => pkg
       },
       // Promise
       false
     );
 
-		// Style
+    // Style
     if (key === "style") {
       sniper.style = sniper.style.variables;
     }

@@ -78,14 +78,20 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
         $style: sniper.style
       };
 
+      // Set Senior
+      const senior = {
+        ...sniper.util,
+        ...syringe
+      };
+
+      // ★ Snipe Provider -- Just Store
+      provider(process.env.rc || {}, senior, true);
+
       // ★ Registry Provider -- Just Store
       registry(
         { registry: { store: process.env.rc.registry.store } },
         glober,
-        {
-          ...sniper.util,
-          ...syringe
-        },
+        senior,
         true
       );
 
@@ -106,7 +112,13 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       // Vue Runner
       Vue.use(vueRunner, App, {
         // Init Store
-        store: vueStore(Vuex, sniper.store, waitress, glober.store),
+        store: vueStore(
+          Vuex,
+          sniper.store,
+          waitress,
+          config.store.getters || {},
+          glober.store
+        ),
         // Init Router
         router: vueRouter(Router, sniper.route, config.route, glober.route),
         // Init Language
