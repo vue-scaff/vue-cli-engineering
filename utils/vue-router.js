@@ -28,6 +28,14 @@ export default (Router, modules, configure = {}) => {
     });
   };
 
+  // Route Guard
+  ["beforeEach", "afterEach", "beforeResolve"].forEach(key => {
+    // in Configure
+    if (configure[key] && $router[key]) {
+      $router[key](configure[key]);
+    }
+  });
+
   // Return
   return $router;
 };
