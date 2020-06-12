@@ -15,6 +15,9 @@ export default (Router, modules, configure = {}) => {
     ...configure
   });
 
+  // Set Route into Configure
+  configure.$router = $router;
+
   // Create Update Api
   $router.update = (routes, config = {}) => {
     // Inherit
