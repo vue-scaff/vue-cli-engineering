@@ -14,28 +14,30 @@ export default ({ registry }, glober, inject, late = false) => {
     return glober;
   }
 
+  // Just Store
+  if (late === true) {
+    // Set Key
+    const key = "store";
+
+    // Inset to Glober
+    return (glober[key] = contextual(
+      {
+        // Get Context
+        context: alternate(key),
+        // Expect If
+        expect: pkg => pkg,
+        // Empowerment
+        inject: inject
+      },
+      // Promise
+      false
+    ));
+  }
+
   // Get Contextual
   foreach(registry, (set, key) => {
-    // Set Contextual into Sniper
+    // No Store
     if (key === "store") {
-      // Should Comply
-      if (late === true) {
-        // Inset to Glober
-        return (glober[key] = contextual(
-          {
-            // Get Context
-            context: alternate(key),
-            // Expect If
-            expect: pkg => pkg,
-            // Empowerment
-            inject: inject
-          },
-          // Promise
-          false
-        ));
-      }
-
-      // Or Next
       return;
     }
 

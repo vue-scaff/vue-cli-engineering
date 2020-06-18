@@ -14,28 +14,30 @@ export default ({ extract }, sniper, inject, late = false) => {
     return sniper;
   }
 
+  // Just Store
+  if (late === true) {
+    // Set Key
+    const key = "store";
+
+    // Inset to Sniper
+    return (sniper[key] = contextual(
+      {
+        // Get Context
+        context: convert(key, extract[key].suffix),
+        // Expect If
+        expect: pkg => pkg,
+        // Empowerment
+        inject: inject
+      },
+      // Promise
+      false
+    ));
+  }
+
   // Get Contextual
   foreach(extract, (set, key) => {
-    // Set Contextual into Sniper
+    // No Store
     if (key === "store") {
-      // Should Comply
-      if (late === true) {
-        // Inset to Sniper
-        return (sniper[key] = contextual(
-          {
-            // Get Context
-            context: convert(key, set.suffix),
-            // Expect If
-            expect: pkg => pkg,
-            // Empowerment
-            inject: inject
-          },
-          // Promise
-          false
-        ));
-      }
-
-      // Or Next
       return;
     }
 

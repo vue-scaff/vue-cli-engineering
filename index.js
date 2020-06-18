@@ -15,6 +15,7 @@ import {
   vueRunner,
   vueRegister,
   vueComponent,
+	vueFilter,
   vueRouter,
   vueStore,
   vueLanguage
@@ -108,6 +109,8 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       Vue.use(vueRegister, waitress);
       // Component Register
       Vue.use(vueComponent, sniper.component, { ...config.component });
+			// Filter Register
+			Vue.use(vueFilter, sniper.filter);
 
       // Vue Runner
       Vue.use(vueRunner, App, {
