@@ -15,7 +15,7 @@ import {
   vueRunner,
   vueRegister,
   vueComponent,
-	vueFilter,
+  vueFilter,
   vueRouter,
   vueStore,
   vueLanguage
@@ -70,13 +70,17 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
 
     // Compile
     Compile(App) {
+      // Taunt First
+      taunt(glober);
+
       // Get Http
       const { request, response } = config;
 
       // Set Syringe
       const syringe = {
         $http: http(request, response),
-        $style: sniper.style
+        $style: sniper.style,
+        $api: glober.api
       };
 
       // Set Senior
@@ -96,9 +100,6 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
         true
       );
 
-      // Taunt
-      taunt(glober);
-
       // Fusion Debris
       fusion(glober, sniper);
 
@@ -109,8 +110,8 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       Vue.use(vueRegister, waitress);
       // Component Register
       Vue.use(vueComponent, sniper.component, { ...config.component });
-			// Filter Register
-			Vue.use(vueFilter, sniper.filter);
+      // Filter Register
+      Vue.use(vueFilter, sniper.filter);
 
       // Vue Runner
       Vue.use(vueRunner, App, {
