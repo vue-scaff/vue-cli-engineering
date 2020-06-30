@@ -50,11 +50,14 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       // Basic Support
       support(Vue, { Router, Vuex, I18N });
 
-      // Procer Utils
-      procer(sniper.util);
-
       // ★ Snipe Provider
       provider(process.env.rc || {}, sniper);
+
+      // ✿ Procer Util
+      procer(sniper.util);
+
+      // ✿ Procer Filter
+      procer(sniper.filter);
 
       // ★ Registry Provider -- No Store
       registry(process.env.rc || {}, glober, sniper.util);
