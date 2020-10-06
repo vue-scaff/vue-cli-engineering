@@ -17,7 +17,7 @@ function catcher({ registry, projects }, projecter) {
   // Get Depers from Projects
   const depers = importz(trues(projects, false), (project, cip) => {
     // Get Various as White
-    return foreach(cip(require(`repo-${project}`)), (value, key) =>
+    return foreach(cip(require(`@repo/${project}`)), (value, key) =>
       white.includes(key) ? value[key] : value
     );
   });
