@@ -14,9 +14,9 @@ export default (glober, sniper) => {
   if (glober.route) {
     // Set Mantra
     let mantra = [...glober.route];
-		// Inject
+    // Inject
     foreach(sniper.route, route => mantra.push(route));
-		// Assignment
-		sniper.route = mantra;
+    // Assignment
+    sniper.route = mantra;
   }
 };

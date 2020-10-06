@@ -38,7 +38,7 @@ export default ({ extract }, sniper, inject, late = false) => {
   foreach(extract, (set, key) => {
     // No Store
     if (key === "store") {
-      return;
+      // return;
     }
 
     // Others

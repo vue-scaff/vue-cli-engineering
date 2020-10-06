@@ -36,7 +36,17 @@ let touch = "url method data headers".split(" ");
 
 // Check Uni
 function check() {
-  return [undefined, "undefined"].includes(typeof uni) ? undefined : uni;
+  // No Delete
+  // return [undefined, "undefined"].includes(typeof uni) ? undefined : uni;
+
+  // 4 nebular.js
+  const u = [undefined, "undefined"].includes(typeof uni) ? undefined : uni;
+
+  if (u) {
+    return !u.simular;
+  }
+
+  return u;
 }
 
 // Transfer
@@ -107,6 +117,9 @@ function help(url, method, data = {}, headers = {}) {
 
   // Exp
   exp = Axios.create(preset);
+
+  // Credentials
+  Axios.defaults.withCredentials = true;
 
   // Data Cache
   let cache = process(preset.data, method);

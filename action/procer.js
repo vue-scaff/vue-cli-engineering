@@ -11,7 +11,7 @@ export default (utils = {}) => {
       // Change Hump
       .replace(/-(\w)/g, ($0, $1) => $1.toUpperCase());
 
-		// Compare Key
+    // Compare Key
     if (secret != key) {
       // Name
       utils[secret] = util;

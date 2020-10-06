@@ -1,8 +1,11 @@
 // Use Summary
 import { summary } from "../action";
 
+// Import Empty
+import { empty } from "../kit";
+
 // Export
-export default glober => {
+export default (glober, extend) => {
   // Get Any
   let { api, host } = glober;
 
@@ -13,8 +16,13 @@ export default glober => {
 
     // Reset Api
     glober.api = summary(glober.host, api);
+
+    // For Extend
+    if (extend && !empty(extend)) {
+      Object.assign(glober.api, summary(glober.host, extend));
+    }
   }
 
   // Funny
-  (window || global || {}).registry = glober;
+  window.registry = glober;
 };

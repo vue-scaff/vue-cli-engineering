@@ -2,4 +2,4 @@
  * Sequence Injections into Store
  * ======== ======== ========
  */
-export default []
+export default [];

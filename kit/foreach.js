@@ -7,18 +7,24 @@
 function foreach(source, callback = () => {}) {
   // No Source
   if (source === undefined) {
-    return console.error("please enter param.");
+    return console.error('please enter param.');
   }
   // No Call
   if (callback.constructor !== Function) {
-    return console.error("callback must function.");
+    return console.error('callback must function.');
   }
   // Array
   if (source.constructor === Array) {
     return source.map((value, index) => callback(value, index));
   }
   // Any (Json)
-  return Object.keys(source).map(key => callback(source[key], key));
+  const json = {};
+
+  Object.keys(source).map(key => {
+    json[key] = callback(source[key], key);
+  });
+
+  return json;
 }
 
 // Export

@@ -4,25 +4,44 @@ function convert(mode, suffix) {
     return;
   }
   if (mode === "component") {
-    return require.context(`@component`, true, /.vue$/);
+    try {
+      return require.context(`@component`, true, /.vue$/);
+    } catch (e) {}
   }
   if (mode === "filter") {
-    return require.context(`@filter`, true, /.js$/);
+    try {
+      return require.context(`@filter`, true, /.js$/);
+    } catch (e) {}
+  }
+  if (mode === "directive") {
+    try {
+      return require.context(`@directive`, true, /.js$/);
+    } catch (e) {}
   }
   if (mode === "route") {
-    return require.context(`@route`, true, /\S+\/route.js$/);
+    try {
+      return require.context(`@route`, true, /\S+\/route.js$/);
+    } catch (e) {}
   }
   if (mode === "store") {
-    return require.context(`@store`, true, /\S+\/store.js$/);
+    try {
+      return require.context(`@store`, true, /\S+\/store.js$/);
+    } catch (e) {}
   }
   if (mode === "util") {
-    return require.context(`@util`, true, /.js$/);
+    try {
+      return require.context(`@util`, true, /.js$/);
+    } catch (e) {}
   }
   if (mode === "style") {
-    return require.context(`@style`, true, /variables.scss$/);
+    try {
+      return require.context(`@style`, true, /variables.scss$/);
+    } catch (e) {}
   }
   if (mode === "i18n") {
-    return require.context(`@i18n`, true, /.js$/);
+    try {
+      return require.context(`@i18n`, true, /.js$/);
+    } catch (e) {}
   }
 }
 
