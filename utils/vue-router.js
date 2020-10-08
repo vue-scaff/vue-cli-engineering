@@ -23,12 +23,18 @@ export default (Router, modules, configure = {}) => {
     // Inherit
     config = Object.assign({}, configure, config);
 
-    // New Matcher
-    $router.matcher = new Router({
+    // New Router
+    const newRouter = new Router({
       routes,
       ...configure,
       scrollBehavior: () => ({ y: 0 })
     });
+
+    // New Matcher
+    $router.matcher = newRouter.matcher;
+
+    // Add Routes
+    $router.addRoutes(routes);
   };
 
   // Route Guard
