@@ -3,8 +3,11 @@ import { foreach } from "../kit";
 
 // Export
 export default (Vuex, modules, utils, getters, global) => {
-  // Add Namespace
-  foreach(modules, (module, key) => (module.namespaced = true));
+  // Loop Modules
+  foreach(modules, (module, key) => {
+    // Add Namespace
+    module.namespaced = true;
+  });
 
   // Merge Global
   if (global) {
@@ -14,6 +17,6 @@ export default (Vuex, modules, utils, getters, global) => {
   // Return
   return new Vuex.Store({
     modules,
-		getters
+    getters
   });
 };

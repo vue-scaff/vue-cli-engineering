@@ -34,6 +34,9 @@ let type = "application/x-www-form-urlencoded";
 // Touch
 let touch = "url method data headers".split(" ");
 
+// Noop
+function noop() {}
+
 // Check Uni
 function check() {
   // No Delete
@@ -52,9 +55,9 @@ function check() {
 // Transfer
 function transfer(request, response) {
   // Assignment Request
-  Intercept.Request = request;
+  Intercept.Request = request || noop;
   // Assignment Response
-  Intercept.Response = response;
+  Intercept.Response = response || noop;
 }
 
 // Nova Key

@@ -30,7 +30,7 @@ import {
 } from "./utils";
 
 // Import Kit
-import { http } from "./kit";
+import { http, json } from "./kit";
 
 // Glober
 const glober = {};
@@ -123,7 +123,7 @@ export default ({ Vue, Router, Vuex, I18N, Configure, Root }) => {
       // ★ Snipe Provider -- Just Store
       // provider(process.env.rc || {}, sniper, senior, true);
       // ★★★ Special -- Get Result of Store
-      fare(sniper.store, senior);
+      fare(sniper.store, senior, json);
       // ★★★ Special -- Get Result of Directive
       fare(sniper.directive, senior);
 

@@ -1,8 +1,4 @@
 export default (I18N, i18n, configure = {}) => {
-  if (typeof navigator === "undefined") {
-    var navigator = {};
-  }
-
   const lang =
     configure.lang ||
     navigator.userLanguage ||
